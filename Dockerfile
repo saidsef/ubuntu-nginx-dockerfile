@@ -15,7 +15,7 @@ RUN apt-get -yq autoclean
 RUN apt-get -yq autoremove
 RUN apt-get -yq purge
 
-ADD custom.conf /etc/nginx/conf.d/
+ADD config/custom.conf /etc/nginx/conf.d/
 
 EXPOSE 80
 
