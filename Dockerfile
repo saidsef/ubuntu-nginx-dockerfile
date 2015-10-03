@@ -21,6 +21,4 @@ EXPOSE 80
 
 WORKDIR ~/
 
-ENTRYPOIN ["top","-b"]
-
 CMD /usr/sbin/nginx -g "daemon off;"
