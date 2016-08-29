@@ -3,27 +3,23 @@
 #
 
 # Pull base image
-FROM ubuntu:latest
+FROM ubuntu:16.04
 MAINTAINER Said Sef <said@saidsef.co.uk>
 
 # Update packages
-RUN apt-get update
-RUN apt-get upgrade -yq
-RUN apt-get install -yq apt-utils lsof
+RUN apt-get update && \
+    apt-get upgrade -yq && \
+    apt-get install -yq apt-utils lsof && \
+    apt-get install -yq nginx-extras && \
+    apt-get -yq autoremove && \
+    apt-get -yq clean && \
+    apt-get -yq autoclean && \
+    apt-get -yq purge
 
 # Add node user
 RUN adduser --disabled-password --gecos '' node
 RUN adduser node sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
-# Install Nginx
-RUN apt-get install -yq nginx-extras
-
-# Clean up
-RUN apt-get -yq autoremove
-RUN apt-get -yq clean
-RUN apt-get -yq autoclean
-RUN apt-get -yq purge
 
 # Mount Nginx config
 ADD config/custom.conf /etc/nginx/conf.d/
