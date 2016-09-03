@@ -16,6 +16,9 @@ RUN apt-get update && \
     apt-get -yq autoclean && \
     apt-get -yq purge
 
+# Label
+LABEL version="2.0"
+
 # Add node user
 RUN adduser --disabled-password --gecos '' node
 RUN adduser node sudo
@@ -32,4 +35,4 @@ EXPOSE 80
 WORKDIR ~/
 
 # Define default command
-CMD /usr/sbin/nginx -g "daemon off;"
+CMD ["/usr/sbin/nginx", " -g ", "daemon off;"]
