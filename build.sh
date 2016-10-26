@@ -4,7 +4,7 @@ BUILD_ID=$1
 
 info() {
   echo """
-    This is a containerised Bamboo application
+    This is a containerised Nginx server
   """
 }
 
@@ -30,7 +30,7 @@ delete() {
 build() {
   echo "Building image"
   docker build --build-arg "BUILD_ID=${BUILD_ID}" -t saidsef/ubuntu-nginx-dockerfile .
-  docker tag saidsef/ubuntu-bamboo-dockerfile saidsef/ubuntu-nginx-dockerfile:build-${BUILD_ID}
+  docker tag saidsef/ubuntu-nginx-dockerfile saidsef/ubuntu-nginx-dockerfile:build-${BUILD_ID}
 }
 
 push() {
