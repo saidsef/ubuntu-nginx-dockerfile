@@ -3,7 +3,7 @@
 #
 
 # Pull base image
-FROM alpine:latest
+FROM nginx:1.11.5-alpine
 MAINTAINER Said Sef <said@saidsef.co.uk>
 
 LABEL version="3.0"
@@ -13,12 +13,6 @@ ENV HOME /tmp
 
 # Define working directory.
 WORKDIR /data
-
-# Update packages
-RUN apk add --update wget curl nginx
-
-# Clean up
-RUN rm -rf /var/cache/apk/*
 
 #  create build id
 ARG BUILD_ID=""
@@ -32,4 +26,4 @@ ADD config/custom.conf /etc/nginx/conf.d/
 EXPOSE 80
 
 # Define default command
-CMD ["/usr/sbin/nginx", " -g ", "daemon off;"]
+CMD /etc/init.d/nginx start
