@@ -3,26 +3,26 @@
 #
 
 # Pull base image
-FROM ubuntu:16.04
+FROM alpine:latest
 MAINTAINER Said Sef <said@saidsef.co.uk>
 
+LABEL version="3.0"
+LABEL description="Containerised nginx server"
+
+ENV HOME /tmp
+
+# Define working directory.
+WORKDIR /data
+
 # Update packages
-RUN apt-get update && \
-    apt-get upgrade -yq && \
-    apt-get install -yq apt-utils lsof && \
-    apt-get install -yq nginx-extras && \
-    apt-get -yq autoremove && \
-    apt-get -yq clean && \
-    apt-get -yq autoclean && \
-    apt-get -yq purge
+RUN apk add --update wget curl nginx
 
-# Label
-LABEL version="2.0"
+# Clean up
+RUN rm -rf /var/cache/apk/*
 
-# Add node user
-RUN adduser --disabled-password --gecos '' node
-RUN adduser node sudo
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+#  create build id
+ARG BUILD_ID=""
+RUN echo ${BUILD_ID} > build_id.txt
 
 # Mount Nginx config
 ADD config/custom.conf /etc/nginx/conf.d/
@@ -30,9 +30,6 @@ ADD config/custom.conf /etc/nginx/conf.d/
 # Expose ports
 # - 80: HTTP
 EXPOSE 80
-
-# Define working directory
-WORKDIR ~/
 
 # Define default command
 CMD ["/usr/sbin/nginx", " -g ", "daemon off;"]
