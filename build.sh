@@ -29,13 +29,13 @@ delete() {
 
 build() {
   echo "Building image"
-  docker build --build-arg "BUILD_ID=${BUILD_ID}" -t saidsef/ubuntu-bamboo-dockerfile .
-  docker tag saidsef/ubuntu-bamboo-dockerfile saidsef/ubuntu-bamboo-dockerfile:build-${BUILD_ID}
+  docker build --build-arg "BUILD_ID=${BUILD_ID}" -t saidsef/ubuntu-nginx-dockerfile .
+  docker tag saidsef/ubuntu-bamboo-dockerfile saidsef/ubuntu-nginx-dockerfile:build-${BUILD_ID}
 }
 
 push() {
   echo "Pushing image to docker hub"
-  docker push saidsef/ubuntu-bamboo-dockerfile
+  docker push saidsef/ubuntu-nginx-dockerfile
   echo $?
 }
 
