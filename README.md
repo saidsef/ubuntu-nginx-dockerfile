@@ -1,6 +1,8 @@
-# ubuntu-nginx-dockerfile
+# Alpine Nginx dockerfile
 Alpine NGINX Dockerfile
 
 A simple Nginx image for Docker to serve static websites. It will serve anything in the directory /var/www
 
-You'll need to use the Dockerfile to build an image with your site in it.
+## Prerequisite
+
+ * Docker
