@@ -1,5 +1,5 @@
 # ubuntu-nginx-dockerfile
-Ubuntu 16.04 NGINX Dockerfile
+Alpine NGINX Dockerfile
 
 A simple Nginx image for Docker to serve static websites. It will serve anything in the directory /var/www
 
