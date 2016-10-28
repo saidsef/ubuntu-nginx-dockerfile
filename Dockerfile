@@ -26,4 +26,4 @@ ADD config/custom.conf /etc/nginx/conf.d/
 EXPOSE 80
 
 # Define default command
-CMD /etc/init.d/nginx start
+CMD ["nginx","-g","daemon off;"]
