@@ -29,8 +29,12 @@ delete() {
 
 build() {
   echo "Building image"
-  docker build --build-arg "BUILD_ID=${BUILD_ID}" -t saidsef/ubuntu-nginx-dockerfile .
-  docker tag saidsef/ubuntu-nginx-dockerfile saidsef/ubuntu-nginx-dockerfile:build-${BUILD_ID}
+  if [ ! -z "TRAVIS_PULL_REQUEST" ]; then
+    docker build --build-arg "BUILD_ID=${BUILD_ID}" -t saidsef/ubuntu-nginx-dockerfile:pr-${BUILD_ID} .
+  else
+    docker build --build-arg "BUILD_ID=${BUILD_ID}" -t saidsef/ubuntu-nginx-dockerfile .
+    docker tag saidsef/ubuntu-nginx-dockerfile saidsef/ubuntu-nginx-dockerfile:build-${BUILD_ID}
+  fi
 }
 
 push() {
