@@ -27,6 +27,7 @@ before_script:
 
 script:
   - docker version
+  - echo env
   - ./build.sh $TRAVIS_BUILD_NUMBER
 
 notifications:
