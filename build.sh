@@ -29,7 +29,7 @@ delete() {
 
 build() {
   echo "Building image"
-  if [ -n "$TRAVIS_PULL_REQUEST" ]; then
+  if [ ! -z "${TRAVIS_PULL_REQUEST##*[!0-9]*}" ]; then
     docker build --build-arg "BUILD_ID=${BUILD_ID}" -t saidsef/ubuntu-nginx-dockerfile:build-${BUILD_ID}-pr-${TRAVIS_PULL_REQUEST} .
   else
     docker build --build-arg "BUILD_ID=${BUILD_ID}" -t saidsef/ubuntu-nginx-dockerfile .
