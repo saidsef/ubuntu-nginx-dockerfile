@@ -1,13 +1,8 @@
-#
-# Nginx Dockerfile
-#
+FROM nginx:1.12-alpine
+MAINTAINER Said Sef <said@saidsef.co.uk> (http://saidsef.co.uk/)
 
-# Pull base image
-FROM nginx:1.11.5-alpine
-MAINTAINER Said Sef <said@saidsef.co.uk>
-
-LABEL version="3.0"
-LABEL description="Containerised nginx server"
+LABEL version="3.3"
+LABEL description="Containerised Nginx Server"
 
 ENV HOME /tmp
 
